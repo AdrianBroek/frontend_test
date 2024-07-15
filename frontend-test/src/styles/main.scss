@@ -28,8 +28,13 @@ main {
                 }
                 &.first {
                     form {
+                        cursor: pointer;
+                        label {
+                            cursor: inherit;
+                        }
                         gap: 2em;
                         .option {
+                            cursor: inherit;
                             width: 100%;
                             column-gap: 2rem;
                             .input-container {
@@ -86,7 +91,11 @@ main {
                 }
                 &.third {
                     text-align: center;
-                    
+                    h3 {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                 }
             }
         }

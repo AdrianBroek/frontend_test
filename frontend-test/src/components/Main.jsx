@@ -143,6 +143,11 @@ const Main = () => {
         }
     }
 
+    // Sortowanie dodatkowych tekstów alfabetycznie
+    const sortedAdditionalText = [...additionalText].sort((a, b) => {
+        return a.txt.localeCompare(b.txt);
+    });
+
     return (
         <main>
             <div className="container">
@@ -208,19 +213,16 @@ const Main = () => {
                             <button onClick={()=>addTextHandler(activeText)}>Doklej</button>
                         </div>
                     </article>
-
                     <article className="third" style={windowWidth > 960 ? {maxWidth: blockWidth/3} : {maxWidth: blockWidth}}>
                         <h3>Blok z długą nazwą która sama się przytnie ...</h3>
                         <div id="long-text">
-                            <p>{text}</p>
-                            {additionalText.map((el)=> (
-                                <p>{el.txt}</p>
-                            ))}
+                        <p>{text}</p>
+                        {sortedAdditionalText.map((el) => (
+                            <p key={el.id}>{el.txt}</p>
+                        ))}
                         </div>
                     </article>
                 </section>
-                
-
             </div>
         </main>
     )
