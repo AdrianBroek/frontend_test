@@ -96,6 +96,11 @@ main {
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
+                    #long-text {
+                        p {
+                            display: inline;
+                        }
+                    }
                 }
             }
         }

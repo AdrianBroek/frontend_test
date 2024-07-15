@@ -83,7 +83,6 @@ const Main = () => {
         if(additionalText.length == 0){
             return dispatch(callAlert([{text: "Nie możesz zastąpić tekstu który nie istnieje", type: "error", id:uuidv4()}]))
         }else {
-
             // jesli aktywny nie tekst jest 1 lub 2 elementem to losuj dalej id z opcji 3
             const id = sentences.findIndex(el => el.id === newText.id);
             if(id !== 0 && id !== 1){
@@ -91,12 +90,12 @@ const Main = () => {
             }
             
             // jesli ostatni element z dodatkowych wyrazow ma id rowne zastępowanego, zastąp element
-            const double_check = additionalText[additionalText.length - 1].id === newText.id
+            const toReplace = additionalText[additionalText.length - 1].id === newText.id
 
             if(additionalText.length === 0){
                 dispatch(callAlert([{text: "Nie możesz podmienić tekstu, jeśli żaden tekst nie istnieje", type: "warning", id:uuidv4()}]))
             }
-            else if(!double_check) {
+            else if(!toReplace) {
                 dispatch(replateText(newText))
                 dispatch(callAlert([{text: "Tekst zastąpiony.", type: "success", id:uuidv4()}]))
             } else {
@@ -143,10 +142,23 @@ const Main = () => {
         }
     }
 
-    // Sortowanie dodatkowych tekstów alfabetycznie
-    const sortedAdditionalText = [...additionalText].sort((a, b) => {
-        return a.txt.localeCompare(b.txt);
-    });
+    const [sorted, setSorted] = useState([])
+
+    useEffect(()=> {
+        let sentenceArray = [...additionalText];
+        const sortedText = sentenceArray.sort((a, b) => {
+            const textA = a.txt.toLowerCase();
+            const textB = b.txt.toLowerCase();
+            if (textA < textB) return -1;
+            if (textA > textB) return 1;
+            return 0;
+        });
+        setSorted(sortedText)
+        console.log(sorted)
+    }, [additionalText])
+
+
+
 
     return (
         <main>
@@ -216,10 +228,10 @@ const Main = () => {
                     <article className="third" style={windowWidth > 960 ? {maxWidth: blockWidth/3} : {maxWidth: blockWidth}}>
                         <h3>Blok z długą nazwą która sama się przytnie ...</h3>
                         <div id="long-text">
-                        <p>{text}</p>
-                        {sortedAdditionalText.map((el) => (
-                            <p key={el.id}>{el.txt}</p>
-                        ))}
+                            <p>{text}</p>
+                            {sorted.map((el,index)=> (
+                                <p key={index}>{el.txt}</p>
+                            ))}
                         </div>
                     </article>
                 </section>

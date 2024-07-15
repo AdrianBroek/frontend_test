@@ -31,7 +31,6 @@ const AlertComponent = ({ text, type, id }) => {
 
   return (
     <div
-      id="alert-component"
       className={`alert-container ${checked ? 'show' : 'hide'}`}
       onClick={deleteAlert}
     >

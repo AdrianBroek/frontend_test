@@ -60,6 +60,9 @@ const ChangeSettings = ({setChangeSettingsOpen, changeSettingsOpen}) => {
             }
         }
         if(check) {
+            if (/[0-9]/.test(newSentence.sentence)){
+                return  dispatch(callAlert([{text: "Tekst musi składać się z samych liter", type: "info", id:uuidv4()}]))
+            }
             inputRef.current.value = "";
             dispatch(addSentence(newSentence))
         }

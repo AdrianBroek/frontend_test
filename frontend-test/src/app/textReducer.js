@@ -1,8 +1,6 @@
 import { text } from "@fortawesome/fontawesome-svg-core";
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
 const initialState = {
     text: "",
     additionalText: []

@@ -1,3 +1,5 @@
+@import 'mixins';
+
 #alert-container {
     position: fixed;
     display: flex;
@@ -7,9 +9,24 @@
     right: 5px;
     bottom: .5%;
     width: auto;
+    max-width: 100%;
     height: auto;
     z-index: 10;
+    max-height: 40vh;
+    overflow: hidden;
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: $lighter-text;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $grey;
+    }
+    
 }
+
+
 
 .alert-container {
     margin: 0.15rem;
@@ -18,6 +35,7 @@
     transition: all .3s ease-in-out;
     transform: translateX(100%);
     opacity: 0;
+    
   }
   
   .alert-container.show {
@@ -72,4 +90,16 @@
   
   dialog.error h4{
     color: #721c24;
+  }
+
+
+
+
+  @include smartphone {
+    #alert-container {
+      .alert-container dialog {
+        padding: .75rem;
+      }
+    }
+
   }
