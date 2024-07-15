@@ -1,0 +1,107 @@
+@import 'mixins';
+
+#changeSettings {
+    @include laptop {
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+    }
+    position: relative;
+    #close-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        background: none;
+        width: 2.5em;
+        height: 2.5em;
+        @include laptop {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border: none;
+            background: none;
+            width: 96%;
+            height: 2.5em;
+            border: 1px solid #876f6f;
+            background: $orange;
+            color: white;
+        }
+    }
+    h2 {color: $dark-text}
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    min-height: 80vh;
+    background: #fff;
+    border-radius: .25rem;
+    padding: 2em;
+    box-shadow: 0px 0px 16px #000;
+    max-height: 80vh;
+    .input-container {
+        width: 100%;
+        row-gap: 1.7em;
+        overflow-y: auto;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: $lighter-text;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $grey;
+        }
+    }
+    .input {
+        position: relative;
+        width: 100%;
+        label {
+            position: absolute;
+            padding: .25em;
+            background: #fff;
+            top: -28%;
+            left: 1.5%;
+            font-size: .8em;
+            z-index: 1;
+        }
+        input {
+            width: 100%;
+            padding: 1em;
+            border: 1px solid $light-grey;
+            border-radius: .2em;
+            outline: none;
+        }
+        button {
+            padding: 1em;
+            background-color: $white;
+            border: none;
+            &:hover {
+                svg {
+                    color: $dark-text;
+                }
+            }
+        }
+    }
+    .add-sentence {
+        width: 100%;
+        gap: 1rem;
+        hr {
+            // margin-top: 1em;
+            width: 100%;
+            border: none;
+            height: 1px;
+            background-color: transparent;
+            box-shadow: 1px 3px 5px #8c8c8c;
+            transform: rotate(180deg);
+            z-index: 2;
+        }
+        button {
+            @include button-style($white,$light-grey,$light-grey, $white, .9em);
+            padding: 1rem;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+@mixin laptop {
+    @media screen and (max-width: 960px){
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: 768px){
+        @content;
+    }
+}
+
+@mixin smartphone {
+    @media screen and (max-width: 500px){
+        @content;
+    }
+}
+
+
+
+@mixin button-style($border,$background,$border-hover,$color,$size) {
+    border: 1px solid $border;
+    background-color: $background;
+    column-gap: .5em;
+    width: 100%;height: 50%;
+    padding: 0 4em;
+    line-height: 1;
+    font-size: $size;
+    color: $color;
+    &:hover {
+        background: linear-gradient(90deg, rgb(205, 116, 0) 22%, rgb(226, 131, 7) 52%, rgb(253, 170, 61) 79%, rgb(251, 155, 32) 100%);
+        color: #fff;
+        border-color: #fff;
+        h5,svg {
+            color: inherit;
+        }
+    }
+}

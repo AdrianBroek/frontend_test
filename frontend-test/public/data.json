@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "sentence": "To jest pierwsze zdanie."
+    },
+    {
+      "id": 2,
+      "sentence": "Oto drugie zdanie w tej tablicy."
+    },
+    {
+      "id": 3,
+      "sentence": "Trzecie zdanie też tu się znajduje."
+    },
+    {
+      "id": 4,
+      "sentence": "Czwarte zdanie jest nieco dłuższe niż pozostałe."
+    },
+    {
+      "id": 5,
+      "sentence": "Piąte zdanie jest bardzo interesujące."
+    },
+    {
+      "id": 6,
+      "sentence": "Szóste i ostatnie zdanie w tej tablicy."
+    }
+]

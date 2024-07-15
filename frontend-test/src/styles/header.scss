@@ -1,0 +1,64 @@
+@import 'mixins';
+
+header {
+    background-color: #0B0C10;
+    h2 {
+        color: #fff;
+        font-weight: 400;
+        font-size: 2.1rem;
+        text-align: right;
+        span {
+            color: inherit;
+            display: block;
+        }
+    }
+    .container {
+        padding: 1.5em 0;
+        figure {
+            background-color: #303030;
+            border-radius: 100%;
+            width: 6em;
+            height: 6em;
+            padding: 1em;
+            transition: .35s ease-in-out;
+            &:hover {
+                background-color: #E88300;
+                svg {
+                    transform: scale(1.2);
+                }
+            }
+            svg {
+                transition: inherit;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+
+@include laptop {
+    header {
+        h2 {
+            font-size: 4vw;
+        }
+        .container {
+            figure {
+                width: 4em;
+                height: 4em;
+                padding: .65em;
+            }
+        }
+    }
+}
+
+@include smartphone {
+    header {
+        h2 {
+            font-size: .8em;
+        }
+        .container {
+            padding: 1em 0;
+        }
+    }
+}

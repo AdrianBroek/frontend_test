@@ -1,0 +1,39 @@
+@import 'mixins';
+
+.options-block {
+    position: absolute;
+    bottom: 0;
+    background-color: $white;
+    row-gap: .5em;
+    width: 13em;
+    height: fit-content;
+    transition: .3s ease-in-out;
+    box-shadow: 0px 0px 16px #000;
+    border-radius: .25em;
+    z-index: 5;
+    right: 10%;
+    padding: 1em;
+    @include laptop {
+        right: 5%;
+    }
+    &.open {
+        bottom: 111px;
+    }
+    .button-block {
+        gap: .45em;
+        button {
+            background-color: transparent;
+            border: none;
+            column-gap: .75em;
+            white-space: nowrap;
+            font-weight: 600;
+            transition: .2s ease-in-out;
+            &:hover {
+                p, svg {
+                    color: $orange;
+                }
+            }
+        }
+    }
+    
+}

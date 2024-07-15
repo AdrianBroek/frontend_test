@@ -1,0 +1,147 @@
+main {
+    background-color: #2A2D36;
+    min-height: 90vh;
+    .container {
+        padding: 4em 0;
+        section:first-child {
+            row-gap: 1em;
+            width: fit-content;
+            margin: auto;
+            hr {
+                width: 75%;
+            }
+            h1 {
+                font-weight: 300;
+                font-size: 2.5em;
+            }
+        }
+
+        section:last-child {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            article {
+                margin-top: 3em;
+                h3 {
+                    padding: 2.5em 0;
+                    text-transform: uppercase;
+                    text-align: center;
+                }
+                &.first {
+                    form {
+                        gap: 2em;
+                        .option {
+                            width: 100%;
+                            column-gap: 2rem;
+                            .input-container {
+                                position: relative;
+                                .custom-radio {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    width: 2em;
+                                    height: 2em;
+                                    border-radius: 100%;
+                                    background-color: $white;
+                                    .circle {
+                                        width: 1.5em;
+                                        height: 1.5em;
+                                        border-radius: 100%;
+                                        background-color: $light-grey;
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                        .radio-active {
+                                            width: .85em;
+                                            height: .85em;
+                                            border-radius: 50%;
+                                            background-color: $white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                &.second {
+                    .button-container {
+                        gap: 2em;
+                        button {
+                            background-color: transparent;
+                            border: 1px solid $lighter-text;
+                            padding: .5rem 2.5rem;
+                            border-radius: .2em;
+                            color: $light-text;
+                            font-weight: 600;
+                            &:hover {
+                                background: rgb(205,116,0);
+                                background: linear-gradient(90deg, rgba(205,116,0,1) 22%, rgb(226, 131, 7) 52%, rgb(253, 170, 61) 79%, rgba(251,155,32,1) 100%);
+                                color: $white;
+                                border-color: $white;
+                            }
+                        }
+                    }
+                    
+                }
+                &.third {
+                    text-align: center;
+                    
+                }
+            }
+        }
+    }
+    p, label {
+        color: $lighter-text;
+    }
+}
+
+
+
+@include laptop {
+    main {
+        .container {
+            padding: 1.5em 0;
+            section:first-child {
+                h1 {
+                    font-size: 5vw;
+                }
+            }
+            section:last-child {
+                grid-template-columns: 1fr 1fr;
+                article {
+                    margin-top: 1em;
+                    h3 {
+                        padding: 1.5em 0;
+                    }
+                    &.first {
+                        form {
+                            margin-left: 1rem;
+                        }
+                        h3 {
+                            text-align: left;
+                        }
+                    }
+                    &.second {
+                        h3 {
+                            text-align: right;
+                        }
+                        .button-container {
+                            flex-direction: column;
+                            align-items: flex-end;
+                            gap: 1em;
+                            button {
+                                padding: .85rem 2.85rem;
+                            }
+                        }
+                        
+                    }
+                    &.third {
+                        grid-column-start: 1;
+                        grid-column-end: 3;
+                    }
+                }
+            }
+        }
+    }
+}

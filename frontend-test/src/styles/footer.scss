@@ -1,0 +1,86 @@
+@import 'mixins';
+
+footer {
+    position: relative;
+    background-color: #15161A;
+    border-top: 1px solid #000;
+    z-index: 10;
+    .container {
+        position: relative;
+        figure {
+            position: relative;
+            .css_is_awesome p,
+            .frame {
+                transition: $transition;
+            }
+            .frame {
+                border: 1px solid $dark-text;
+                height: 100%;width: 90%;
+                position: absolute;
+                top: 0;
+                left: -.5em;
+                transform: rotateY(0deg);
+            }
+            &:hover {
+                .css_is_awesome {
+                    p {
+                        color: $light-text;
+                    }
+                }
+                .frame {
+                    transform: rotateY(180deg);
+                    border-color: $dark-orange;
+                }
+            }
+        }
+        .nabthat-logo {
+            p {
+                gap: .15em;
+                line-height: 1;
+                &::before,&::after {
+                    display: block;
+                    content: "";
+                    width: 2em;
+                    height: 1px;
+                    background-color: $dark-text;
+                }
+            }
+        }
+        .show-block {
+            height: 6em;
+            position: relative;
+            &.open {
+                .options-block {
+                    top: -100%;
+                    opacity: 1;
+                    pointer-events: all;
+                }
+                .arrow {
+                    transform: rotate(180deg);
+                }
+            }
+            .arrow {transform: rotate(0deg);transition: .3s ease-in-out;}
+            > button {
+                @include button-style($dark-text, transparent, $white, inherit, inherit);
+            }
+        }
+    }
+}
+
+
+@include laptop {
+    footer {
+        .container {
+            .nabthat-logo {
+                display: none;
+            }
+            .show-block {
+                width: 50%;
+                > button {
+                    padding: 0;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
