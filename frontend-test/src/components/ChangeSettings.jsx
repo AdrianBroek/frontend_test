@@ -39,6 +39,10 @@ const ChangeSettings = ({setChangeSettingsOpen, changeSettingsOpen}) => {
                 break;
             }
         }
+        if(/[0-9]/.test(activeChange.txt)){
+            check = false;
+            dispatch(callAlert([{text: `Tekst "${activeChange.txt}" musi składać się z samych liter`, type: "info", id:uuidv4()}]))
+        }
         if(check) {
             dispatch(updateSentences({id: parseInt(activeChange.id), sentence: activeChange.txt}))
             dispatch(callAlert([{text: `Zmieniłeś treść o id ${activeChange.id}`, type: "success", id:uuidv4()}]))

@@ -63,9 +63,8 @@ const Main = () => {
         if(id !== 0 && id !== 1){
             radioFormHandler(thirdInput.current.id)
         }
-
         // jesli nie istnieje nowo dodawana treść
-        const avail_check = additionalText.some((el) => el.id === newText.id)
+        const avail_check = additionalText.some((el) => el.id === newText.id);
         
         if(!avail_check) {
             dispatch(addText(newText))
@@ -108,10 +107,12 @@ const Main = () => {
         switch(e) {
             case "first":
                 if(sentences[0]){
+                    
                     setActiveText({
                         id: sentences[0].id,
                         txt: sentences[0].sentence
                     })
+                    
                 } else {
                     dispatch(callAlert([{text: "Brak tekstu o indeksie 0.", type: "error", id:uuidv4()}]))
                 }
@@ -154,8 +155,8 @@ const Main = () => {
             return 0;
         });
         setSorted(sortedText)
-        console.log(sorted)
-    }, [additionalText])
+        // console.log(sorted)
+    }, [additionalText, sentences])
 
 
 

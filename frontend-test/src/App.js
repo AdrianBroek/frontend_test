@@ -1,14 +1,9 @@
 import './styles/App.scss';
-// components
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
-import AlertContainer from './components/AlertContainer';
 import { useSelector,useDispatch } from 'react-redux';
 import { changeSentences } from './app/sentenceReducer';
-import { useEffect, useState } from 'react';
-import Settings from './components/Settings';
+import { useEffect } from 'react';
 import MainPage from './pages/MainPage';
+import { resetText } from './app/textReducer';
 // router 
 import { Routes, Route, useLocation, } from "react-router-dom"
 
@@ -29,8 +24,9 @@ function App() {
 
   useEffect(()=> {
     localStorage.setItem('sentences', JSON.stringify(sentences));
+    // reset text
+    dispatch(resetText())
   }, [sentences])
-
 
   return (
     <div className="App">
