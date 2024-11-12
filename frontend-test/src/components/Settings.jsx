@@ -4,6 +4,9 @@ import { resetText } from "../app/textReducer";
 import { useDispatch } from "react-redux";
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fetchSentences } from "../app/sentenceReducer";
+import {v4 as uuidv4} from 'uuid';
+import { callAlert } from "../app/alertReducer";
 
 const Settings = ({setPopupOpen, popupOpen, setChangeSettingsOpen, changeSettingsOpen}) => {
 
@@ -12,6 +15,8 @@ const Settings = ({setPopupOpen, popupOpen, setChangeSettingsOpen, changeSetting
     const resetOptions = () => {
         dispatch(resetText())
         dispatch(hideAuthor())
+        dispatch(fetchSentences())
+        dispatch(callAlert([{text: "Pomyślnie zresetowano ustawienia", type: "success", id:uuidv4()}]))
     }
 
     return (

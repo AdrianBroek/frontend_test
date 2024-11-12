@@ -14,6 +14,8 @@ const Main = () => {
 
     const formRef = useRef();
     const thirdInput = useRef();
+    const inputRef1 = useRef(null);
+    const inputRef2 = useRef(null);
     const divRef = useRef();
 
     const [activeRadio, setActiveRadio] = useState("")
@@ -37,15 +39,15 @@ const Main = () => {
         }
         const newWindowWidth = window.innerWidth;
         setWindowWidth(newWindowWidth);
-      };
+    };
     
-      useLayoutEffect(() => {
+    useLayoutEffect(() => {
         updateDimensions();
         window.addEventListener('resize', updateDimensions);
         return () => {
-          window.removeEventListener('resize', updateDimensions);
+            window.removeEventListener('resize', updateDimensions);
         };
-      }, []);
+    }, []);
 
     // pobierz teksty po wczytaniu komponentu
     useEffect(()=> {
@@ -104,15 +106,15 @@ const Main = () => {
     }
 
     const radioFormHandler = (e) => {
+        console.log(e)
         switch(e) {
             case "first":
                 if(sentences[0]){
-                    
                     setActiveText({
                         id: sentences[0].id,
                         txt: sentences[0].sentence
                     })
-                    
+                    setActiveRadio("first")
                 } else {
                     dispatch(callAlert([{text: "Brak tekstu o indeksie 0.", type: "error", id:uuidv4()}]))
                 }
@@ -120,10 +122,11 @@ const Main = () => {
                 break;
             case "second":
                 if(sentences[1]) {
-                setActiveText({
-                    id: sentences[1].id,
-                    txt: sentences[1].sentence
-                })
+                    setActiveText({
+                        id: sentences[1].id,
+                        txt: sentences[1].sentence
+                    })
+                    setActiveRadio("second")
                 } else {
                     dispatch(callAlert([{text: "Brak tekstu o indeksie 1.", type: "error", id:uuidv4()}]))
                 }
@@ -135,6 +138,7 @@ const Main = () => {
                         id: sentences[randomNumber].id,
                         txt: sentences[randomNumber].sentence
                     })
+                    setActiveRadio("third")
                 } else {
                     dispatch(callAlert([{text: "Brak tekstu o indeksie 2 lub większym.", type: "error", id:uuidv4()}]))
                 }
@@ -158,7 +162,12 @@ const Main = () => {
         // console.log(sorted)
     }, [additionalText, sentences])
 
-
+    const handleDivClick = (inputRef, id) => {
+        if (inputRef.current) {
+            inputRef.current.click();
+            radioFormHandler(id);
+        }
+    };
 
 
     return (
@@ -175,9 +184,9 @@ const Main = () => {
                             ref={formRef}
                             onChange={(e) => radioFormHandler(e.target.id)}
                             className="flex column align-center align-start">
-                            <div onClick={()=>setActiveRadio("first")} className="option flex align-center">
+                            <div onClick={() => handleDivClick(inputRef1, "first")} className="option flex align-center">
                                 <div className="input-container">
-                                    <input  type="radio" id="first" name="options"/>
+                                    <input ref={inputRef1} type="radio" id="first" name="options"/>
                                     <div className="custom-radio">
                                         <div className="circle flex align-center space-center">
                                             {activeRadio === "first" ? (
@@ -189,9 +198,9 @@ const Main = () => {
                                 <label htmlFor="first">Opcja pierwsza</label>
                             </div>
 
-                            <div onClick={()=>setActiveRadio("second")} className="option flex align-center">
+                            <div onClick={() => handleDivClick(inputRef2, "second")} className="option flex align-center">
                                 <div className="input-container">
-                                    <input  type="radio" id="second" name="options"/>
+                                    <input ref={inputRef2} type="radio" id="second" name="options"/>
                                     <div className="custom-radio flex align-center space-center">
                                         <div className="circle flex align-center space-center">
                                             {activeRadio === "second" ? (
@@ -203,9 +212,9 @@ const Main = () => {
                                 <label htmlFor="second">Opcja druga</label>
                             </div>
 
-                            <div onClick={()=>setActiveRadio("third")} className="option flex align-center">
+                            <div onClick={() => handleDivClick(thirdInput, "third")} className="option flex align-center">
                                 <div className="input-container">
-                                    <input  type="radio" id="third" name="options" ref={thirdInput}/>
+                                    <input type="radio" id="third" name="options" ref={thirdInput}/>
                                     <div className="custom-radio flex align-center space-center">
                                         <div className="circle flex align-center space-center">
                                             {activeRadio === "third" ? (

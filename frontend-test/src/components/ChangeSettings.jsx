@@ -6,6 +6,7 @@ import { callAlert } from "../app/alertReducer";
 import {v4 as uuidv4} from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useBodyScrollLock } from "./BodyLock";
 
 const ChangeSettings = ({setChangeSettingsOpen, changeSettingsOpen}) => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const ChangeSettings = ({setChangeSettingsOpen, changeSettingsOpen}) => {
         id: "",
         txt: ""
     })
-
+    useBodyScrollLock();
     const inputRef = useRef();
 
     const inputHandler = (e) => {
@@ -64,6 +65,9 @@ const ChangeSettings = ({setChangeSettingsOpen, changeSettingsOpen}) => {
             }
         }
         if(check) {
+            if (newSentence.sentence.length < 1){
+                return  dispatch(callAlert([{text: "Tekst nie może być pusty", type: "info", id:uuidv4()}]))
+            }
             if (/[0-9]/.test(newSentence.sentence)){
                 return  dispatch(callAlert([{text: "Tekst musi składać się z samych liter", type: "info", id:uuidv4()}]))
             }
@@ -76,6 +80,7 @@ const ChangeSettings = ({setChangeSettingsOpen, changeSettingsOpen}) => {
     const deleteTextHandler = (e,id) => {
         e.preventDefault();
         dispatch(deleteSentence(id));
+        dispatch(callAlert([{text: `Pomyślnie usunięto sentencję nr ${id}`, type: "success", id:uuidv4()}]))
     }
     
     return (
